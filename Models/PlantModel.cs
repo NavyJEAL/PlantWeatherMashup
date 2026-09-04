@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 public class PlantModel
 {
 	public int PlantID {get; set;}

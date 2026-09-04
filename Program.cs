@@ -1,9 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Mashup.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient<WeatherService>();
+builder.Services.AddHttpClient<PlantService>();
 
 var app = builder.Build();
 
@@ -24,7 +30,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=User}/{action=Login}/{id?}")
     .WithStaticAssets();
 
 
