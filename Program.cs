@@ -7,9 +7,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddHttpClient<WeatherService>();
 builder.Services.AddHttpClient<PlantService>();
+builder.Services.AddHttpClient<CoordinatesService>();
+builder.Services.AddHttpClient<AdviceService>();
 
 var app = builder.Build();
 
